@@ -44,7 +44,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/TvMemberName"
-            app:layout_constraintTop_toTopOf="@id/TvMemberName"
+            app:layout_constraintTop_toBottomOf="@id/TvMemberName"
             android:layout_marginTop="16dp"/>
 
 
