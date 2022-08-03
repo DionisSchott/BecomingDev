@@ -1,8 +1,8 @@
 package com.dionis.auladokevyn.base
 
-import com.dionis.auladokevyn.data.api.HomeApi
+import com.dionis.auladokevyn.domain.usecase.HomeUseCase
+import com.dionis.auladokevyn.infrastructure.interfaces.usecase.IHomeUseCase
 import com.dionis.auladokevyn.infrastructure.interfaces.repository.HomeRepository
-import com.dionis.auladokevyn.infrastructure.repository.HomeRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,11 +12,12 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class RepositoryModule {
+class UseCaseModule {
 
     @Singleton
     @Provides
-    fun providesHomeRepository(homeApi: HomeApi): HomeRepository {
-        return HomeRepositoryImpl(homeApi)
+    fun ProvideHomeUseCase(homeRepository: HomeRepository): IHomeUseCase {
+        return HomeUseCase(homeRepository)
     }
+
 }

@@ -1,4 +1,4 @@
-package com.dionis.auladokevyn.data.model
+package com.dionis.auladokevyn.domain.model
 
 data class MembersItem(
     val Photos: List<Photo>,

@@ -45,7 +45,7 @@ class ApplicationModule {
 
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create(Gson()))
-            .baseUrl("https://pokeapi.co/api/v2/%22")
+            .baseUrl("https://becomingdevapi.victorhqdev.ninja/")
             .client(okHttpClient)
             .build()
     }
