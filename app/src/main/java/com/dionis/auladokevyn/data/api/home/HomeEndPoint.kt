@@ -1,4 +1,4 @@
-package com.dionis.auladokevyn.data.api
+package com.dionis.auladokevyn.data.api.home
 
 import com.dionis.auladokevyn.domain.model.Members
 import retrofit2.http.GET

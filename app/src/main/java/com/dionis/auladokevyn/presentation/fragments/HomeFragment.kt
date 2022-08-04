@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import com.dionis.auladokevyn.base.States
 import com.dionis.auladokevyn.databinding.FragmentHomeBinding
 import com.dionis.auladokevyn.presentation.adapter.MembersAdapter
-import com.dionis.auladokevyn.presentation.viewModels.HomeViewModel
+import com.dionis.auladokevyn.presentation.viewModels.home.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

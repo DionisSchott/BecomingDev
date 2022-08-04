@@ -1,4 +1,4 @@
-package com.dionis.auladokevyn.presentation.viewModels
+package com.dionis.auladokevyn.presentation.viewModels.home
 
 
 import androidx.lifecycle.LiveData

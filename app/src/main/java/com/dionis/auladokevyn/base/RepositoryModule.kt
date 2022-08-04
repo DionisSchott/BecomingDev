@@ -1,6 +1,6 @@
 package com.dionis.auladokevyn.base
 
-import com.dionis.auladokevyn.data.api.HomeApi
+import com.dionis.auladokevyn.data.api.home.HomeApi
 import com.dionis.auladokevyn.infrastructure.interfaces.repository.HomeRepository
 import com.dionis.auladokevyn.infrastructure.repository.HomeRepositoryImpl
 import dagger.Module

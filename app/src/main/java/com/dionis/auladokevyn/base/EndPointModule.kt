@@ -1,6 +1,6 @@
 package com.dionis.auladokevyn.base
 
-import com.dionis.auladokevyn.data.api.HomeEndPoint
+import com.dionis.auladokevyn.data.api.home.HomeEndPoint
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,7 +15,7 @@ class EndPointModule {
 
         @Singleton
         @Provides
-        fun provideHomeEndPoint(retrofit: Retrofit): HomeEndPoint{
+        fun provideHomeEndPoint(retrofit: Retrofit): HomeEndPoint {
             return retrofit.create(HomeEndPoint::class.java)
         }
 

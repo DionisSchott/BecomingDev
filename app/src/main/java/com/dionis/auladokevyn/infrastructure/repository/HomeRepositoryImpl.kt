@@ -1,6 +1,6 @@
 package com.dionis.auladokevyn.infrastructure.repository
 
-import com.dionis.auladokevyn.data.api.HomeApi
+import com.dionis.auladokevyn.data.api.home.HomeApi
 import com.dionis.auladokevyn.domain.model.Members
 import com.dionis.auladokevyn.infrastructure.interfaces.repository.HomeRepository
 import kotlinx.coroutines.flow.Flow
