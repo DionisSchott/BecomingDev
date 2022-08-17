@@ -3,4 +3,15 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="obligatory_field">Campo Obrigatório</string>
+    <string name="name">Nome</string>
+    <string name="lastname">Sobrenome</string>
+    <string name="age">Idade</string>
+    <string name="technology">Linguagens</string>
+    <string name="experience">Experiências</string>
+    <string name="register_new_dev">registrar novo dev</string>
+    <string name="social_network">Rede Social</string>
+    <string name="e_mail">E-mail</string>
+    <string name="contact">Celular</string>
+    <string name="send">enviar</string>
+    <string name="welcome_back">Bem Vindo De Volta</string>
 </resources>

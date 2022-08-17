@@ -1,5 +1,6 @@
 package com.dionis.becomingdev.presentation.fragments
 
+import android.app.ActionBar
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.dionis.becomingdev.R
 import com.dionis.becomingdev.databinding.FragmentRegisterMemberBinding
 import com.dionis.becomingdev.base.States
@@ -27,12 +29,14 @@ class RegisterMemberFragment : Fragment() {
     ): View {
         binding = FragmentRegisterMemberBinding.inflate(inflater, container, false)
         return binding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpClicks()
         setObservers()
+        backPage()
     }
 
 
@@ -58,6 +62,10 @@ class RegisterMemberFragment : Fragment() {
                 contact
             )
         }
+    }
+
+    private fun backPage() {
+        binding.btnBack.setOnClickListener {findNavController().popBackStack()}
     }
 
     private fun setObservers() {

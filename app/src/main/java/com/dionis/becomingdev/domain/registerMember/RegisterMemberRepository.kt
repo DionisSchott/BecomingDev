@@ -1,7 +1,7 @@
 package com.dionis.becomingdev.domain.registerMember
 
-import com.dionis.becomingdev.model.RegisterMemberBody
-import com.dionis.becomingdev.model.RegisterMemberResponse
+import com.dionis.becomingdev.model.registerMember.RegisterMemberBody
+import com.dionis.becomingdev.model.registerMember.RegisterMemberResponse
 import kotlinx.coroutines.flow.Flow
 
 interface RegisterMemberRepository {

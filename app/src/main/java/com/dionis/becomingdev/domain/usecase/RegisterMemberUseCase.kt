@@ -1,8 +1,8 @@
 package com.dionis.becomingdev.domain.usecase
 
 import com.dionis.becomingdev.domain.registerMember.RegisterMemberRepository
-import com.dionis.becomingdev.model.RegisterMemberBody
-import com.dionis.becomingdev.model.RegisterMemberResponse
+import com.dionis.becomingdev.model.registerMember.RegisterMemberBody
+import com.dionis.becomingdev.model.registerMember.RegisterMemberResponse
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

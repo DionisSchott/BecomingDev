@@ -1,7 +1,7 @@
 package com.dionis.becomingdev.base
 
 import com.dionis.becomingdev.domain.model.Members
-import com.dionis.becomingdev.model.RegisterMemberResponse
+import com.dionis.becomingdev.model.registerMember.RegisterMemberResponse
 
 abstract class States {
 

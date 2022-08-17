@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.dionis.becomingdev.base.BaseViewModel
 import com.dionis.becomingdev.base.States
 import com.dionis.becomingdev.domain.usecase.RegisterMemberUseCase
-import com.dionis.becomingdev.model.RegisterMemberBody
+import com.dionis.becomingdev.model.registerMember.RegisterMemberBody
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
@@ -21,8 +21,6 @@ class RegisterMemberViewModel @Inject internal constructor(
     private val registerMemberUseCase: RegisterMemberUseCase,
 ) : BaseViewModel() {
 
-//    private val _validateFields = MutableLiveData<States.ValidateAddNewMemberState>() = MutableLiveData()
-//    val validateFields: LiveData<States.ValidateAddNewMemberState> get() = _validateFields
 
     private val _addNewMember = MutableLiveData<States.AddNewMemberState>()
     val addNewMember: LiveData<States.AddNewMemberState> = _addNewMember

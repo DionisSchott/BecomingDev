@@ -1,26 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fillViewport="true">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical">
+        android:layout_height="0dp">
 
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
-            android:text="registrar novo dev"
-            android:textAllCaps="true"
-            android:textSize="25sp"
-            android:textStyle="bold" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/falseToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_back"
+                app:layout_constraintBottom_toBottomOf="@id/falseToolbar"
+                app:layout_constraintStart_toStartOf="@id/falseToolbar"
+                app:layout_constraintTop_toTopOf="@id/falseToolbar" />
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/register_new_dev"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/falseToolbar"
+                app:layout_constraintStart_toStartOf="@id/btnBack"
+                app:layout_constraintTop_toTopOf="@id/falseToolbar" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/tvName"
@@ -28,7 +50,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
-            android:text="nome" />
+            android:text="@string/name"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/falseToolbar" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/edtName"
@@ -36,12 +61,13 @@
             android:layout_height="42dp"
             android:layout_marginHorizontal="13dp"
             android:layout_marginTop="10dp"
-            android:background="@color/light_yelow"
             android:inputType="text"
             android:maxLines="1"
             android:paddingHorizontal="15dp"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvName" />
 
         <TextView
             android:id="@+id/tvLastName"
@@ -49,7 +75,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="10dp"
-            android:text="sobrenome" />
+            android:text="@string/lastname"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edtName"
+
+            />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/edtLastName"
@@ -57,11 +88,12 @@
             android:layout_height="42dp"
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="10dp"
-            android:background="@color/light_yelow"
             android:inputType="text"
             android:maxLines="1"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvLastName" />
 
         <TextView
             android:id="@+id/tvAge"
@@ -69,7 +101,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="10dp"
-            android:text="idade" />
+            android:text="@string/age"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edtLastName" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/edtAge"
@@ -77,11 +112,12 @@
             android:layout_height="42dp"
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="10dp"
-            android:background="@color/light_yelow"
             android:inputType="number"
             android:maxLines="1"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvAge" />
 
         <TextView
             android:id="@+id/tvtechnology"
@@ -89,7 +125,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="10dp"
-            android:text="linguagens" />
+            android:text="@string/technology"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edtAge" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/edtTechnology"
@@ -97,11 +136,11 @@
             android:layout_height="42dp"
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="10dp"
-            android:background="@color/light_yelow"
             android:inputType="text"
             android:maxLines="1"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvtechnology" />
 
         <TextView
             android:id="@+id/tvExperience"
@@ -109,7 +148,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="10dp"
-            android:text="experiências" />
+            android:text="@string/experience"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edtTechnology" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/edtExperience"
@@ -117,11 +159,12 @@
             android:layout_height="42dp"
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="10dp"
-            android:background="@color/light_yelow"
             android:inputType="text"
             android:maxLines="1"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvExperience" />
+
 
         <TextView
             android:id="@+id/tvSocial"
@@ -129,7 +172,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="10dp"
-            android:text="rede social" />
+            android:text="@string/social_network"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edtExperience" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/edtSocial"
@@ -137,11 +183,11 @@
             android:layout_height="42dp"
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="10dp"
-            android:background="@color/light_yelow"
             android:inputType="text"
             android:maxLines="1"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSocial" />
 
         <TextView
             android:id="@+id/tvEmail"
@@ -149,7 +195,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="10dp"
-            android:text="e-mail" />
+            android:text="@string/e_mail"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edtSocial" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/edtEmail"
@@ -157,11 +206,11 @@
             android:layout_height="42dp"
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="10dp"
-            android:background="@color/light_yelow"
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvEmail" />
 
         <TextView
             android:id="@+id/tvContact"
@@ -169,7 +218,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="10dp"
-            android:text="celular" />
+            android:text="@string/contact"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edtEmail" />
 
         <com.santalu.maskara.widget.MaskEditText
             android:id="@+id/edtContact"
@@ -177,13 +229,13 @@
             android:layout_height="42dp"
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="10dp"
-            android:background="@color/light_yelow"
             android:inputType="number"
             android:textColor="@color/black"
-            android:textSize="14sp"
-            app:mask="(xx) xxxxx-xxxx"
-            app:maskCharacter="x"
-            app:maskStyle="normal"/>
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvContact"
+            app:mask="(__) _____-____"
+            app:maskCharacter="_"
+            app:maskStyle="normal" />
 
         <Button
             android:id="@+id/btnSend"
@@ -191,11 +243,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
-            android:backgroundTint="@color/light_yelow_2"
-            android:text="enviar"
-            android:textColor="@color/black" />
+
+            android:text="@string/send"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edtContact" />
 
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

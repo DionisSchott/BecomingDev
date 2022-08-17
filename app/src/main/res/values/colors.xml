@@ -9,4 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="light_yelow">#D3D2CE</color>
     <color name="light_yelow_2">#ACA793</color>
+    <color name="blue">#002481</color>
+    <color name="light_blue">#0025E4</color>
+
 </resources>
