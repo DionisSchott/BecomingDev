@@ -8,5 +8,5 @@ import retrofit2.http.POST
 interface RegisterMemberEndPoint {
 
     @POST("developers")
-    suspend fun newMember(@Body body: RegisterMemberBody): RegisterMemberResponse
+    suspend fun registerMember(@Body body: RegisterMemberBody): RegisterMemberResponse
 }

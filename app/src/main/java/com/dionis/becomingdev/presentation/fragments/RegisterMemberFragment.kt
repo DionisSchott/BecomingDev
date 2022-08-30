@@ -1,6 +1,5 @@
 package com.dionis.becomingdev.presentation.fragments
 
-import android.app.ActionBar
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.dionis.becomingdev.R
 import com.dionis.becomingdev.databinding.FragmentRegisterMemberBinding
 import com.dionis.becomingdev.base.States
-import com.dionis.becomingdev.presentation.viewModels.registerMember.RegisterMemberViewModel
+import com.dionis.becomingdev.presentation.viewModels.RegisterMemberViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -40,6 +39,10 @@ class RegisterMemberFragment : Fragment() {
     }
 
 
+    private fun backPage() {
+        binding.btnBack.setOnClickListener {findNavController().popBackStack()}
+    }
+
     private fun setUpClicks() {
         binding.btnSend.setOnClickListener {
             val name = binding.edtName.text.toString()
@@ -62,10 +65,6 @@ class RegisterMemberFragment : Fragment() {
                 contact
             )
         }
-    }
-
-    private fun backPage() {
-        binding.btnBack.setOnClickListener {findNavController().popBackStack()}
     }
 
     private fun setObservers() {

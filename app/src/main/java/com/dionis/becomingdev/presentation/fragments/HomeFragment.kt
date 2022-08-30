@@ -12,7 +12,7 @@ import com.dionis.becomingdev.R
 import com.dionis.becomingdev.base.States
 import com.dionis.becomingdev.databinding.FragmentHomeBinding
 import com.dionis.becomingdev.presentation.adapter.MembersAdapter
-import com.dionis.becomingdev.presentation.viewModels.home.HomeViewModel
+import com.dionis.becomingdev.presentation.viewModels.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -58,17 +58,15 @@ class HomeFragment : Fragment() {
                     binding.progressBar.visibility = View.GONE
                     Toast.makeText(requireContext(), "Erro ao carregar membros", Toast.LENGTH_SHORT)
                         .show()
-
                 }
             }
-
         }
     }
 
     private fun setUpClicks(){
 
-        binding.tvTitle.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_registerMemberFragment)
+        binding.btnRegister.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragmentHome_to_registerMemberFragment)
         }
     }
 

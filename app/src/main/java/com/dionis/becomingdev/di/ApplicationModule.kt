@@ -32,8 +32,9 @@ class ApplicationModule {
                 val original = chain!!.request()
                 val response: Response
                 val requestBuilder: Request.Builder
-                val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ2aWN0b3IudnFzQGhvdG1haWwuY29tIiwiaWF0IjoxNjU5NjU3ODY0LCJleHAiOjE2NjAyNjI2NjR9.pcdg6IdjRoo_fFPYt84CccC1E_SvkyV1ilgW12nRXGY"
-                //SessionManager(context).getToken()
+                val token = SessionManager(context).getToken()
+//                    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ2aWN0b3IudnFzQGhvdG1haWwuY29tIiwiaWF0IjoxNjU5NjU3ODY0LCJleHAiOjE2NjAyNjI2NjR9.pcdg6IdjRoo_fFPYt84CccC1E_SvkyV1ilgW12nRXGY"
+
 
                 requestBuilder = if (!token.isNullOrEmpty()) {
                     original.newBuilder()

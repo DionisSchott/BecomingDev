@@ -20,7 +20,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edtUsernameLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
@@ -29,7 +29,7 @@
 
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/EdtUserName"
+            android:id="@+id/edtUserName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nome de Usuário"
@@ -42,7 +42,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edtEmailLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
@@ -55,6 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="E-mail"
+            android:inputType="text"
             android:maxLines="1"
             android:padding="13dp"
             app:layout_constraintTop_toBottomOf="@+id/edtUsernameLayout" />
@@ -63,7 +64,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edtPasswordLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
@@ -74,10 +75,11 @@
 
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/dtPassword"
+            android:id="@+id/edtPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="1"
+            android:inputType="text"
             android:padding="13dp"
             app:layout_constraintTop_toBottomOf="@+id/edtUsernameLayout"
 
@@ -87,7 +89,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edtPasswordConfirmLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
@@ -100,15 +102,15 @@
             android:id="@+id/edtPasswordConfirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberPassword"
+            android:inputType="text"
             android:padding="13dp"
-            app:layout_constraintTop_toBottomOf="@+id/edt_password" />
+            app:layout_constraintTop_toBottomOf="@+id/edtPassLayout" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/buttonCancel"
+        android:id="@+id/btnCancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20sp"
@@ -126,6 +128,6 @@
         android:layout_marginEnd="30dp"
         android:text="cadastrar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/buttonCancel" />
+        app:layout_constraintTop_toTopOf="@+id/btnCancel" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

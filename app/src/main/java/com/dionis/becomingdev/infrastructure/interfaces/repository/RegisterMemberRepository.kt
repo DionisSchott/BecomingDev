@@ -1,4 +1,4 @@
-package com.dionis.becomingdev.domain.registerMember
+package com.dionis.becomingdev.infrastructure.interfaces.repository
 
 import com.dionis.becomingdev.model.registerMember.RegisterMemberBody
 import com.dionis.becomingdev.model.registerMember.RegisterMemberResponse

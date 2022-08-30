@@ -1,4 +1,4 @@
-package com.dionis.becomingdev.presentation.viewModels.registerMember
+package com.dionis.becomingdev.presentation.viewModels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -40,7 +40,7 @@ class RegisterMemberViewModel @Inject internal constructor(
         contact: String,
     ) {
         viewModelScope.launch {
-            registerMemberUseCase.newMember(
+            registerMemberUseCase.registerMember(
                 RegisterMemberBody(name,
                     lastname,
                     age,
@@ -77,7 +77,6 @@ class RegisterMemberViewModel @Inject internal constructor(
                 socials,
                 email,
                 contact
-
             )
         )
             _validateFields.value = States.ValidateAddNewMember.FieldsDone
@@ -126,7 +125,6 @@ class RegisterMemberViewModel @Inject internal constructor(
             _validateFields.value = States.ValidateAddNewMember.ContactEmpty
             return false
         }
-
         return true
     }
 

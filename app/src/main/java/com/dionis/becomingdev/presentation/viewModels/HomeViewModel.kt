@@ -1,5 +1,4 @@
-package com.dionis.becomingdev.presentation.viewModels.home
-
+package com.dionis.becomingdev.presentation.viewModels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -16,17 +15,20 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val homeUseCase: IHomeUseCase): BaseViewModel() {
+class HomeViewModel @Inject constructor(private val homeUseCase: IHomeUseCase) : BaseViewModel() {
 
     private var _getMembersResult = MutableLiveData<States.GetMembersState>()
     val getMembersResult: LiveData<States.GetMembersState> = _getMembersResult
 
-    fun getMembers(){
-        viewModelScope.launch { homeUseCase.getMembers()
-            .flowOn(Dispatchers.Main)
-            .onStart { _getMembersResult.value = States.GetMembersState.Loading }
-            .catch { _getMembersResult.value = States.GetMembersState.Failure(it.message.toString()) }
-            .collect{_getMembersResult.value = States.GetMembersState.Success(it)}
+    fun getMembers() {
+        viewModelScope.launch {
+            homeUseCase.getMembers()
+                .flowOn(Dispatchers.Main)
+                .onStart { _getMembersResult.value = States.GetMembersState.Loading }
+                .catch {
+                    _getMembersResult.value = States.GetMembersState.Failure(it.message.toString())
+                }
+                .collect { _getMembersResult.value = States.GetMembersState.Success(it) }
         }
     }
 
