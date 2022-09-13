@@ -1,9 +1,11 @@
 package com.dionis.becomingdev.presentation.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.dionis.becomingdev.R
 import com.dionis.becomingdev.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,5 +25,21 @@ class MainActivity : AppCompatActivity() {
 
         navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_main) as NavHostFragment
         navController = navHostFragment?.navController
+
+
+        setupBottomNavigation()
+
+    }
+
+    private fun setupBottomNavigation() {
+        with(binding.bottomNavigation) {setupWithNavController(navController!!)}
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        for (fragment in navHostFragment!!.childFragmentManager.fragments) {
+            fragment.onActivityResult(requestCode, resultCode, data)
+        }
     }
 }

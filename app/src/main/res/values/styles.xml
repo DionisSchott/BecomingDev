@@ -7,4 +7,8 @@
 
     </style>
 
+    <style name="RoundedCornersDialog" parent="@style/Theme.MaterialComponents.Dialog.Alert.Bridge">
+        <item name="dialogCornerRadius">10dp</item>
+    </style>
+
 </resources>

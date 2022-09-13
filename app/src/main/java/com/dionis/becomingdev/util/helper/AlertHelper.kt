@@ -7,6 +7,9 @@ import com.dionis.becomingdev.R
 
 object AlertHelper {
 
+
+
+
     private var alertDialog: AlertDialog? = null
     private var hasDialog = false
 

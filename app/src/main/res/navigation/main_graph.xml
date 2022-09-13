@@ -13,10 +13,26 @@
         <action
             android:id="@+id/action_homeFragmentHome_to_registerMemberFragment"
             app:destination="@id/registerMemberFragment" />
+        <action
+            android:id="@+id/action_homeFragmentHome_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerMemberFragment"
         android:name="com.dionis.becomingdev.presentation.fragments.RegisterMemberFragment"
         android:label="RegisterMemberFragment"
-        />
+        >
+        <action
+            android:id="@+id/action_registerMemberFragment_to_homeFragmentHome"
+            app:destination="@id/homeFragmentHome" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.dionis.becomingdev.presentation.fragments.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_homeFragmentHome"
+            app:destination="@id/homeFragmentHome" />
+    </fragment>
 </navigation>

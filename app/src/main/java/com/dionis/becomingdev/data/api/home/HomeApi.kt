@@ -8,3 +8,4 @@ class HomeApi @Inject constructor(private val homeEndPoint: HomeEndPoint)  {
     suspend fun getMembers(): Members = homeEndPoint.getMembers()
 
 }
+

@@ -3,15 +3,10 @@ package com.dionis.becomingdev.base
 import com.dionis.becomingdev.data.api.home.HomeApi
 import com.dionis.becomingdev.data.api.login.UserApi
 import com.dionis.becomingdev.data.api.newuser.NewUserApi
+import com.dionis.becomingdev.data.api.photo.PostPhotoApi
 import com.dionis.becomingdev.data.api.registermember.RegisterMemberApi
-import com.dionis.becomingdev.infrastructure.interfaces.repository.RegisterMemberRepository
-import com.dionis.becomingdev.infrastructure.repository.RegisterMemberRepositoryImpl
-import com.dionis.becomingdev.infrastructure.interfaces.repository.HomeRepository
-import com.dionis.becomingdev.infrastructure.interfaces.repository.LoginRepository
-import com.dionis.becomingdev.infrastructure.interfaces.repository.NewUserRepository
-import com.dionis.becomingdev.infrastructure.repository.HomeRepositoryImpl
-import com.dionis.becomingdev.infrastructure.repository.LoginRepositoryImpl
-import com.dionis.becomingdev.infrastructure.repository.NewUserRepositoryImpl
+import com.dionis.becomingdev.infrastructure.interfaces.repository.*
+import com.dionis.becomingdev.infrastructure.repository.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -46,5 +41,13 @@ class RepositoryModule {
     fun providesLoginRepository(userApi: UserApi): LoginRepository {
         return LoginRepositoryImpl(userApi)
     }
+
+    @Singleton
+    @Provides
+    fun providesPostPhotoRepository(postPhotoApi: PostPhotoApi): PostPhotoRepository {
+        return PostPhotoRepositoryImpl(postPhotoApi)
+    }
+
+
 
 }

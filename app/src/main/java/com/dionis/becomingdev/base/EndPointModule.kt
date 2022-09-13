@@ -3,6 +3,7 @@ package com.dionis.becomingdev.base
 import com.dionis.becomingdev.data.api.home.HomeEndPoint
 import com.dionis.becomingdev.data.api.login.UserEndPoint
 import com.dionis.becomingdev.data.api.newuser.NewUserEndPoint
+import com.dionis.becomingdev.data.api.photo.PostPhotoEndPoint
 import com.dionis.becomingdev.data.api.registermember.RegisterMemberEndPoint
 import dagger.Module
 import dagger.Provides
@@ -39,5 +40,12 @@ class EndPointModule {
     fun provideUserPoint(retrofit: Retrofit): UserEndPoint {
         return retrofit.create(UserEndPoint::class.java)
     }
+
+    @Singleton
+    @Provides
+    fun providePostPhotoEndPoint(retrofit: Retrofit): PostPhotoEndPoint {
+        return retrofit.create(PostPhotoEndPoint::class.java)
+    }
+
 
 }

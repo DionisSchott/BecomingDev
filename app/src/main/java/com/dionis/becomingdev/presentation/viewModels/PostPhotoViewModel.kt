@@ -20,7 +20,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PostPhotoViewModel @Inject internal constructor(
-    private val postPhotoUseCase: PostPhotoUseCase
+    private val postPhotoUseCase: PostPhotoUseCase,
 ) : BaseViewModel() {
 
     private val _postPhoto = MutableLiveData<States.PostPhotoState>()
@@ -49,33 +49,33 @@ class PostPhotoViewModel @Inject internal constructor(
         }
     }
 
-    fun validateFields(
-        photo: File,
-        developer_id: Int,
-    ) {
-        if (validateAllFields(
-                photo,
-                developer_id
-            )
-        )
-            _validateFields.value = States.ValidatePostPhoto.FieldsDone
-    }
+//    fun validateFields(
+//        photo: File,
+//        developer_id: Int,
+//    ) {
+//        if (validateAllFields(
+//                photo,
+//                developer_id
+//            )
+//        )
+//            _validateFields.value = States.ValidatePostPhoto.FieldsDone
+//    }
 
-    private fun validateAllFields(
-        photo: File,
-        developer_id: Int,
-
-    ): Boolean {
-        if (photo) {
-            _validateFields.value = States.ValidatePostPhoto.UserPhotoEmpty
-            return false
-        }
-        if (developer_id.toString().isEmpty()) {
-            _validateFields.value = States.ValidatePostPhoto.UserIdEmpty
-            return false
-        }
-
-        return true
-    }
+//    private fun validateAllFields(
+//        photo: File,
+//        developer_id: Int,
+//
+//    ): Boolean {
+//        if (photo.isEmpty) {
+//            _validateFields.value = States.ValidatePostPhoto.UserPhotoEmpty
+//            return false
+//        }
+//        if (developer_id.toString().isEmpty()) {
+//            _validateFields.value = States.ValidatePostPhoto.UserIdEmpty
+//            return false
+//        }
+//
+//        return true
+//    }
 
 }

@@ -59,6 +59,7 @@
             android:maxLines="1"
             android:padding="13dp"
             android:inputType="text"
+            android:text="martinsdionis@gmail.com"
             app:layout_constraintTop_toBottomOf="@+id/edtEmailLayout" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -79,8 +80,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/key"
-            android:inputType="text"
+            android:inputType="textPassword"
             android:padding="13dp"
+            android:text="eu050290"
             app:layout_constraintTop_toBottomOf="@+id/edtPassLayout" />
 
     </com.google.android.material.textfield.TextInputLayout>

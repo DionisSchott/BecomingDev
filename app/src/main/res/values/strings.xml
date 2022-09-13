@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AulaDoKevyn</string>
+    <string name="app_name">BecomingDev</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="obligatory_field">Campo Obrigatório</string>
@@ -14,4 +14,15 @@
     <string name="contact">Celular</string>
     <string name="send">enviar</string>
     <string name="welcome_back">Bem Vindo De Volta</string>
+
+    <!--Image Helper-->
+    <string name="add_image">Adicionar Imagem</string>
+    <string name="chose_origin">Escolha a origem da imagem</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Galeria</string>
+    <string name="image_error">Erro ao carregar imagem</string>
+    <string name="image_path">image</string>
+    <string name="dados_cadastrais">Dados Cadastrais</string>
+
+
 </resources>

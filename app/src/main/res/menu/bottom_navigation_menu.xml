@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <!--colocar como id o id que ele recebe no navGraph-->
+
+    <item
+        android:id="@+id/homeFragmentHome"
+        android:enabled="true"
+        android:icon="@drawable/ic_home"
+        android:title="home"/>
+    <item
+        android:id="@+id/profileFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_edit"
+        android:title="editar"/>
+    <item
+        android:id="@+id/registerMemberFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_person_add"
+        android:title="novo membro"/>
+</menu>
