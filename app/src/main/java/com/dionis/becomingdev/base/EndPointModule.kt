@@ -4,6 +4,7 @@ import com.dionis.becomingdev.data.api.home.HomeEndPoint
 import com.dionis.becomingdev.data.api.login.UserEndPoint
 import com.dionis.becomingdev.data.api.newuser.NewUserEndPoint
 import com.dionis.becomingdev.data.api.photo.PostPhotoEndPoint
+import com.dionis.becomingdev.data.api.profile.ProfileEndPoint
 import com.dionis.becomingdev.data.api.registermember.RegisterMemberEndPoint
 import dagger.Module
 import dagger.Provides
@@ -21,6 +22,12 @@ class EndPointModule {
     @Provides
     fun provideHomeEndPoint(retrofit: Retrofit): HomeEndPoint {
         return retrofit.create(HomeEndPoint::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideProfileEndPoint(retrofit: Retrofit): ProfileEndPoint {
+        return retrofit.create(ProfileEndPoint::class.java)
     }
 
     @Singleton

@@ -123,7 +123,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:hint="linguagens"
+            android:hint="Experiências"
             android:padding="5dp"
             app:endIconMode="custom"
             app:endIconDrawable="@drawable/ic_edit"

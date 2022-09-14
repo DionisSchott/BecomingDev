@@ -38,7 +38,8 @@ class LoginViewModel @Inject internal constructor(
                 .onStart { _loginDone.value = States.LoginState.Loading }
                 .catch { _loginDone.value = States.LoginState.Error(it.message.toString())}
                 .collect { _loginDone.value = States.LoginState.Success(it)
-                SessionManager(context).setToken(it.token)}
+                SessionManager(context).setToken(it.token)
+                SessionManager(context).setId(it.user.id)}
         }
     }
 

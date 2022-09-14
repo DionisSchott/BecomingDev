@@ -20,6 +20,7 @@ class HomeViewModel @Inject constructor(private val homeUseCase: IHomeUseCase) :
     private var _getMembersResult = MutableLiveData<States.GetMembersState>()
     val getMembersResult: LiveData<States.GetMembersState> = _getMembersResult
 
+
     fun getMembers() {
         viewModelScope.launch {
             homeUseCase.getMembers()

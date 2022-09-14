@@ -7,9 +7,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import com.dionis.becomingdev.base.States
+import com.dionis.becomingdev.data.storage.SessionManager
 import com.dionis.becomingdev.databinding.FragmentProfileBinding
-import com.dionis.becomingdev.presentation.adapter.UserAdapter
+import com.dionis.becomingdev.domain.model.MembersItem
+import com.dionis.becomingdev.presentation.viewModels.ProfileViewModel
 import com.dionis.becomingdev.util.helper.ImageHelper
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
@@ -18,9 +23,11 @@ import java.io.File
 class ProfileFragment : Fragment() {
 
 
+    private val viewModel by viewModels<ProfileViewModel>()
 
     private lateinit var binding: FragmentProfileBinding
     lateinit var imageHelper: ImageHelper
+
 
 
 
@@ -39,13 +46,43 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         imageHelper = ImageHelper(requireActivity())
-
+        viewModel.getUserInfo(5)
 
         endIconClick()
         editImage()
-
+        setUpObservers()
 
     }
+
+
+    private fun setUpObservers() {
+        viewModel.getUserResult.observe(viewLifecycleOwner) {
+            when (it) {
+                is States.GetUserState.Success -> {
+                    setDataUser(it.members)
+
+                }
+                is States.GetUserState.Loading -> {
+
+
+                }
+                is States.GetUserState.Failure -> {
+                   Toast.makeText(requireContext(), "Erro ao carregar membro", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+        }
+    }
+
+private fun setDataUser(membersItem: MembersItem) {
+
+    binding.edtName.setText(membersItem.name)
+    binding.edtEmail.setText(membersItem.email)
+    binding.edtTechnology.setText(membersItem.technology)
+    binding.edtExperience.setText(membersItem.experience)
+    binding.edtSocialMedia.setText(membersItem.socials)
+
+}
 
 
 
