@@ -38,7 +38,9 @@ class MembersAdapter : RecyclerView.Adapter<MembersAdapter.Holder>(){
         fun bind(membersInfo: MembersItem) {
             this.information = membersInfo
 
-//            Picasso.get().load(membersInfo.Photos[0].url).into(binding.imgMembers)
+            if (membersInfo.Photos.isEmpty())
+            else{Picasso.get().load(membersInfo.Photos[0].url).into(binding.imgMembers)}
+
             binding.TvMemberName.text = membersInfo.name
             binding.TvLanguage.text = membersInfo.technology
         }
