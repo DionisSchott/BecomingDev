@@ -10,10 +10,11 @@ import com.squareup.picasso.Picasso
 
 class MembersAdapter : RecyclerView.Adapter<MembersAdapter.Holder>(){
 
+    lateinit var onItemClicked: (MembersItem) -> Unit
     private var membersItems: MutableList<MembersItem> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        return Holder(ItemHomeMembersBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return Holder(ItemHomeMembersBinding.inflate(LayoutInflater.from(parent.context), parent, false), onItemClicked)
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -31,7 +32,8 @@ class MembersAdapter : RecyclerView.Adapter<MembersAdapter.Holder>(){
     }
 
     class Holder(
-        private val binding: ItemHomeMembersBinding
+        private val binding: ItemHomeMembersBinding,
+        private val onItemClicked: (MembersItem) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
         lateinit var information: MembersItem
 
@@ -41,6 +43,10 @@ class MembersAdapter : RecyclerView.Adapter<MembersAdapter.Holder>(){
 //            Picasso.get().load(membersInfo.Photos[0].url).into(binding.imgMembers)
             binding.TvMemberName.text = membersInfo.name
             binding.TvLanguage.text = membersInfo.technology
+
+            binding.root.setOnClickListener{
+                onItemClicked.invoke(membersInfo)
+            }
         }
     }
 }

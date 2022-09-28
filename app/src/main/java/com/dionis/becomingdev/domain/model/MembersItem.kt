@@ -1,5 +1,7 @@
 package com.dionis.becomingdev.domain.model
 
+import java.io.Serializable
+
 data class MembersItem(
     val Photos: List<Photo>,
     val age: Int,
@@ -11,4 +13,4 @@ data class MembersItem(
     val name: String,
     val socials: String,
     val technology: String
-)
+): Serializable

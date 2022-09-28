@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_homeFragmentHome_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_homeFragmentHome_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerMemberFragment"
@@ -35,4 +38,9 @@
             android:id="@+id/action_profileFragment_to_homeFragmentHome"
             app:destination="@id/homeFragmentHome" />
     </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.dionis.becomingdev.presentation.fragments.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details" />
 </navigation>

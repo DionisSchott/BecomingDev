@@ -16,6 +16,7 @@ import com.dionis.becomingdev.R
 import com.dionis.becomingdev.base.States
 import com.dionis.becomingdev.databinding.FragmentHomeBinding
 import com.dionis.becomingdev.presentation.adapter.MembersAdapter
+import com.dionis.becomingdev.presentation.fragments.DetailsFragment.Companion.MEMBER
 import com.dionis.becomingdev.presentation.viewModels.HomeViewModel
 import com.dionis.becomingdev.util.helper.ImageHelper
 import dagger.hilt.android.AndroidEntryPoint
@@ -122,6 +123,12 @@ class HomeFragment : Fragment() {
 
     private fun setupAdapters() {
         membersAdapter = MembersAdapter()
+
+        membersAdapter.onItemClicked = {
+            val args = Bundle().apply { putSerializable(MEMBER, it) }
+            findNavController().navigate(R.id.action_homeFragmentHome_to_detailsFragment, args)
+        }
+
         binding.rvMembers.adapter = membersAdapter
     }
 
