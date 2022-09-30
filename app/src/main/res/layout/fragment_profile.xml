@@ -17,7 +17,7 @@
             android:layout_height="75dp"
             android:layout_margin="10dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/person_"
+            android:src="@drawable/ic_launcher_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -42,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:hint="usuário"
+            android:hint="nome"
             android:padding="5dp"
             app:endIconContentDescription="@string/material_motion_easing_standard"
             app:endIconDrawable="@drawable/ic_edit"
@@ -55,11 +55,63 @@
                 android:id="@+id/edtName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="dionis"
+                android:text="nome"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edtLastnameLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="sobrenome"
+            android:padding="5dp"
+            app:endIconContentDescription="@string/material_motion_easing_standard"
+            app:endIconDrawable="@drawable/ic_edit"
+            app:endIconMode="custom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtNameLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtLastname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="sobrenome"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edtAgeLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="idade"
+            android:padding="5dp"
+            app:endIconContentDescription="@string/material_motion_easing_standard"
+            app:endIconDrawable="@drawable/ic_edit"
+            app:endIconMode="custom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtLastnameLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtAge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="00"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -76,7 +128,7 @@
             app:endIconMode="custom"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtNameLayout">
+            app:layout_constraintTop_toBottomOf="@+id/edtExperienceLayout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtEmail"
@@ -85,8 +137,7 @@
                 android:text="email@email.com"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                 />
+                android:textStyle="bold" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -103,7 +154,7 @@
             app:endIconMode="custom"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtEmailLayout">
+            app:layout_constraintTop_toBottomOf="@+id/edtAgeLayout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtTechnology"
@@ -112,8 +163,7 @@
                 android:text="kotlin"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -125,9 +175,9 @@
             android:layout_margin="10dp"
             android:hint="Experiências"
             android:padding="5dp"
-            app:endIconMode="custom"
-            app:endIconDrawable="@drawable/ic_edit"
             app:endIconContentDescription="@string/material_motion_easing_standard"
+            app:endIconDrawable="@drawable/ic_edit"
+            app:endIconMode="custom"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtTechnologyLayout">
@@ -139,8 +189,7 @@
                 android:text="Empresa"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -153,28 +202,66 @@
             android:layout_margin="10dp"
             android:hint="Rede Social"
             android:padding="5dp"
-            app:endIconDrawable="@drawable/ic_edit"
             app:endIconCheckable="false"
+            app:endIconDrawable="@drawable/ic_edit"
             app:endIconMode="custom"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtExperienceLayout"
-            >
+            app:layout_constraintTop_toBottomOf="@+id/edtEmailLayout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtSocialMedia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="linkedin"
+                android:maxLines="1"
                 android:singleLine="true"
+                android:text="linkedin"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:maxLines="1"
 
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edtContactLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="telefone"
+            android:padding="5dp"
+            app:endIconCheckable="false"
+            app:endIconDrawable="@drawable/ic_edit"
+            app:endIconMode="custom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtSocialMediaLayout">
+
+            <com.santalu.maskara.widget.MaskEditText
+                android:id="@+id/edtContact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:text="22981034975"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:mask="(__) _____-____"
+                app:maskCharacter="_"
+                app:maskStyle="normal" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="salvar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtContactLayout" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

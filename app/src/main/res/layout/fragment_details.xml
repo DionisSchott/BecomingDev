@@ -187,25 +187,43 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvSocial" />
 
-        <TextView
+<!--        <TextView-->
+<!--            android:id="@+id/tvContact"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="10dp"-->
+<!--            android:layout_marginEnd="20dp"-->
+<!--            android:text="99 99999-9999"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textStyle="bold"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/tvTitleContact" />-->
+
+        <com.santalu.maskara.widget.MaskEditText
             android:id="@+id/tvContact"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="20dp"
-            android:text="99 99999-9999"
+            android:inputType="number"
             android:textColor="@color/black"
             android:textSize="18sp"
+            android:text="22999999999"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
+            app:mask="(__) _____-____"
+            app:maskCharacter="_"
+            app:maskStyle="normal"
             app:layout_constraintTop_toBottomOf="@id/tvTitleContact" />
 
 
         <Button
+            android:id="@+id/btnEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:text="editar informações"
+            android:layout_margin="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

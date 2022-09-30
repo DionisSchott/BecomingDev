@@ -11,11 +11,11 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.dionis.becomingdev.base.States
-import com.dionis.becomingdev.data.storage.SessionManager
 import com.dionis.becomingdev.databinding.FragmentProfileBinding
 import com.dionis.becomingdev.domain.model.MembersItem
 import com.dionis.becomingdev.presentation.viewModels.ProfileViewModel
 import com.dionis.becomingdev.util.helper.ImageHelper
+import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 
@@ -27,8 +27,8 @@ class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
     lateinit var imageHelper: ImageHelper
-
-
+    lateinit var memberEdit: MembersItem
+    private var jobId: Int = 0
 
 
     override fun onCreateView(
@@ -36,9 +36,8 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
+        memberEdit = arguments?.getSerializable(MEMBER_EDIT) as MembersItem
         return binding.root
-
-
 
     }
 
@@ -46,45 +45,65 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         imageHelper = ImageHelper(requireActivity())
-        viewModel.getUserInfo(5)
 
         endIconClick()
         editImage()
-        setUpObservers()
+        setDataUser()
+
 
     }
 
 
-    private fun setUpObservers() {
-        viewModel.getUserResult.observe(viewLifecycleOwner) {
-            when (it) {
-                is States.GetUserState.Success -> {
-                    setDataUser(it.members)
+//    private fun setUpObservers() {
+//        viewModel.getUserResult.observe(viewLifecycleOwner) {
+//            when (it) {
+//                is States.GetUserState.Success -> {
+//                    setDataUser(it.members)
+//
+//                }
+//                is States.GetUserState.Loading -> {
+//
+//
+//                }
+//                is States.GetUserState.Failure -> {
+//                   Toast.makeText(requireContext(), "Erro ao carregar membro", Toast.LENGTH_SHORT)
+//                        .show()
+//                }
+//            }
+//        }
+//    }
 
-                }
-                is States.GetUserState.Loading -> {
 
+    private fun setDataUser() {
 
-                }
-                is States.GetUserState.Failure -> {
-                   Toast.makeText(requireContext(), "Erro ao carregar membro", Toast.LENGTH_SHORT)
-                        .show()
-                }
-            }
+        if (memberEdit.Photos.isNotEmpty()) {
+            Picasso.get().load(memberEdit.Photos[0].url).into(binding.imgProfile)
         }
+        binding.edtName.setText(memberEdit.name)
+        binding.edtLastname.setText(memberEdit.lastname)
+        binding.edtAge.setText(memberEdit.age.toString())
+        binding.edtEmail.setText(memberEdit.email)
+        binding.edtTechnology.setText(memberEdit.technology)
+        binding.edtExperience.setText(memberEdit.experience)
+        binding.edtSocialMedia.setText(memberEdit.socials)
+
     }
 
-private fun setDataUser(membersItem: MembersItem) {
+    private fun callRequest() {
 
-    binding.edtName.setText(membersItem.name)
-    binding.edtEmail.setText(membersItem.email)
-    binding.edtTechnology.setText(membersItem.technology)
-    binding.edtExperience.setText(membersItem.experience)
-    binding.edtSocialMedia.setText(membersItem.socials)
+        jobId = memberEdit.id
+        val name = binding.edtName.text.toString()
+        val lastName = binding.edtLastname.text.toString()
+        val age = binding.edtAge.text.toString().toInt()
+        val technology =  binding.edtTechnology.text.toString()
+        val experience = binding.edtExperience.text.toString()
+        val socials = binding.edtSocialMedia.text.toString()
+        val email = binding.edtEmail.text.toString()
+        val contact = binding.edtContact.unMasked
 
-}
+        viewModel.editUser(jobId, name, lastName, age, technology, experience, socials, email, contact)
 
-
+    }
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -136,8 +155,9 @@ private fun setDataUser(membersItem: MembersItem) {
 
     }
 
-
-
+    companion object {
+        const val MEMBER_EDIT = "member edit"
+    }
 
 
 }

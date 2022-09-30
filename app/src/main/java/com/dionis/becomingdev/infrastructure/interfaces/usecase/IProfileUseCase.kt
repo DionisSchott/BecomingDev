@@ -1,11 +1,10 @@
 package com.dionis.becomingdev.infrastructure.interfaces.usecase
 
-import com.dionis.becomingdev.domain.model.Members
 import com.dionis.becomingdev.domain.model.MembersItem
-import com.dionis.becomingdev.domain.model.UserInfoResponse
+import com.dionis.becomingdev.model.editMember.EditUserBody
 import kotlinx.coroutines.flow.Flow
 
 interface IProfileUseCase {
 
-    suspend fun getUserInfo(memberId: Int): Flow<MembersItem>
+    suspend fun editUser(memberId: Int, body: EditUserBody): Flow<MembersItem>
 }

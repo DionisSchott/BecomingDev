@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.dionis.becomingdev.base.BaseViewModel
 import com.dionis.becomingdev.base.States
 import com.dionis.becomingdev.infrastructure.interfaces.usecase.IProfileUseCase
+import com.dionis.becomingdev.model.editMember.EditUserBody
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
@@ -17,21 +18,31 @@ import javax.inject.Inject
 @HiltViewModel
 class ProfileViewModel @Inject constructor(private val profileUseCase: IProfileUseCase) : BaseViewModel() {
 
-    private var _getUserResult = MutableLiveData<States.GetUserState>()
-    val getUserResult: LiveData<States.GetUserState> = _getUserResult
+    private var _editUser = MutableLiveData<States.EditUserState>()
+    val editUser: LiveData<States.EditUserState> = _editUser
 
 
+    fun editUser(
+        memberId: Int,
+        name: String,
+        lastname: String,
+        age: Int,
+        technology: String,
+        experience: String,
+        socials: String,
+        email: String,
+        contact: String
 
-    fun getUserInfo(memberId: Int) {
+    ) {
 
         viewModelScope.launch {
-            profileUseCase.getUserInfo(memberId)
+            profileUseCase.editUser(memberId, EditUserBody(name, lastname,age, technology, experience, socials,email, contact))
                 .flowOn(Dispatchers.Main)
-                .onStart { _getUserResult.value = States.GetUserState.Loading }
+                .onStart { _editUser.value = States.EditUserState.Loading }
                 .catch {
-                    _getUserResult.value = States.GetUserState.Failure(it.message.toString())
+                    _editUser.value = States.EditUserState.Failure(it.message.toString())
                 }
-                .collect { _getUserResult.value = States.GetUserState.Success(it) }
+                .collect { _editUser.value = States.EditUserState.Success(it) }
         }
     }
 

@@ -10,11 +10,6 @@
         android:icon="@drawable/ic_home"
         android:title="home"/>
     <item
-        android:id="@+id/profileFragment"
-        android:enabled="true"
-        android:icon="@drawable/ic_edit"
-        android:title="editar"/>
-    <item
         android:id="@+id/registerMemberFragment"
         android:enabled="true"
         android:icon="@drawable/ic_person_add"

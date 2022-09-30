@@ -2,7 +2,6 @@ package com.dionis.becomingdev.base
 
 import com.dionis.becomingdev.domain.model.Members
 import com.dionis.becomingdev.domain.model.MembersItem
-import com.dionis.becomingdev.domain.model.UserInfoResponse
 import com.dionis.becomingdev.model.login.UserResponse
 import com.dionis.becomingdev.model.newUser.NewUserResponse
 import com.dionis.becomingdev.model.photos.PostPhotoResponse
@@ -18,11 +17,11 @@ abstract class States {
 
     }
 
-    sealed class GetUserState {
+    sealed class EditUserState {
 
-        object Loading : GetUserState()
-        data class Success(val members: MembersItem) : GetUserState()
-        data class Failure(val error: String) : GetUserState()
+        object Loading : EditUserState()
+        data class Success(val members: MembersItem) : EditUserState()
+        data class Failure(val error: String) : EditUserState()
 
     }
 

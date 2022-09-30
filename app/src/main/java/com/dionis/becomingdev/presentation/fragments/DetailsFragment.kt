@@ -1,16 +1,15 @@
 package com.dionis.becomingdev.presentation.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.dionis.becomingdev.R
 import com.dionis.becomingdev.databinding.FragmentDetailsBinding
-import com.dionis.becomingdev.databinding.FragmentProfileBinding
 import com.dionis.becomingdev.domain.model.MembersItem
-import com.dionis.becomingdev.presentation.viewModels.HomeViewModel
+import com.dionis.becomingdev.presentation.fragments.ProfileFragment.Companion.MEMBER_EDIT
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,19 +34,37 @@ class DetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setUpScreen()
+        setUpClicks()
 
     }
 
+
+
+    private fun setUpClicks() {
+
+        editInfoScreen()
+    }
+
+
+
     private fun setUpScreen() {
-        if (memberDetail.Photos.isEmpty())
-        else{Picasso.get().load(memberDetail.Photos[0].url).into(binding.imageView)}
+        if (memberDetail.Photos.isNotEmpty()) {
+            Picasso.get().load(memberDetail.Photos[0].url).into(binding.imageView)
+        }
         binding.tvUserName.text = memberDetail.name + " " + memberDetail.lastname
         binding.tvUserAge.text = memberDetail.age.toString()
         binding.tvLanguages.text = memberDetail.technology
         binding.tvExperience.text = memberDetail.experience
         binding.tvEmail.text = memberDetail.email
         binding.tvSocial.text = memberDetail.socials
-        binding.tvContact.text = memberDetail.contact
+        binding.tvContact.setText(memberDetail.contact)
+    }
+
+    private fun editInfoScreen() {
+        binding.btnEdit.setOnClickListener {
+        val args = Bundle().apply { putSerializable(MEMBER_EDIT, memberDetail) }
+        findNavController().navigate(R.id.action_detailsFragment_to_profileFragment, args)
+    }
     }
 
     companion object {
