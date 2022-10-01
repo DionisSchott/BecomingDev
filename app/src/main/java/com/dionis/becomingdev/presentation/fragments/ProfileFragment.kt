@@ -7,9 +7,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.dionis.becomingdev.R
 import com.dionis.becomingdev.base.States
 import com.dionis.becomingdev.databinding.FragmentProfileBinding
 import com.dionis.becomingdev.domain.model.MembersItem
@@ -23,12 +27,12 @@ import java.io.File
 class ProfileFragment : Fragment() {
 
 
-    private val viewModel by viewModels<ProfileViewModel>()
+    private val viewModel: ProfileViewModel by activityViewModels()
 
     private lateinit var binding: FragmentProfileBinding
     lateinit var imageHelper: ImageHelper
     lateinit var memberEdit: MembersItem
-    private var jobId: Int = 0
+    private var memberId: Int = 0
 
 
     override fun onCreateView(
@@ -45,10 +49,13 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         imageHelper = ImageHelper(requireActivity())
+        memberId = memberEdit.id
 
+        setUpClicks()
         endIconClick()
         editImage()
         setDataUser()
+        setObservers()
 
 
     }
@@ -86,12 +93,28 @@ class ProfileFragment : Fragment() {
         binding.edtTechnology.setText(memberEdit.technology)
         binding.edtExperience.setText(memberEdit.experience)
         binding.edtSocialMedia.setText(memberEdit.socials)
+        binding.edtContact.setText(memberEdit.contact)
 
     }
 
-    private fun callRequest() {
+    private fun setUpClicks() {
+        binding.btnSave.setOnClickListener{
+            val name = binding.edtName.text.toString()
+            val lastName = binding.edtLastname.text.toString()
+            val age = binding.edtAge.text.toString().toInt()
+            val technology =  binding.edtTechnology.text.toString()
+            val experience = binding.edtExperience.text.toString()
+            val socials = binding.edtSocialMedia.text.toString()
+            val email = binding.edtEmail.text.toString()
+            val contact = binding.edtContact.unMasked
 
-        jobId = memberEdit.id
+            viewModel.validateFields(name, lastName, age, technology, experience, socials, email, contact)
+        }
+    }
+
+    private fun editMember() {
+
+        val memberId = memberId
         val name = binding.edtName.text.toString()
         val lastName = binding.edtLastname.text.toString()
         val age = binding.edtAge.text.toString().toInt()
@@ -101,8 +124,74 @@ class ProfileFragment : Fragment() {
         val email = binding.edtEmail.text.toString()
         val contact = binding.edtContact.unMasked
 
-        viewModel.editUser(jobId, name, lastName, age, technology, experience, socials, email, contact)
+        viewModel.editUser(memberId, name, lastName, age, technology, experience, socials, email, contact)
 
+    }
+
+    private fun setObservers() {
+        viewModel.validateFields.observe(
+            viewLifecycleOwner
+        ) { state ->
+            when (state) {
+                is States.ValidateEditMember.NameEmpty -> {
+                    showObligatoryField(binding.edtName, R.string.obligatory_field)
+                }
+                is States.ValidateEditMember.LastnameEmpty -> {
+                    showObligatoryField(binding.edtLastname, R.string.obligatory_field)
+                }
+                is States.ValidateEditMember.AgeEmpty -> {
+                    showObligatoryField(binding.edtAge, R.string.obligatory_field)
+                }
+                is States.ValidateEditMember.TechnologyEmpty -> {
+                    showObligatoryField(binding.edtTechnology, R.string.obligatory_field)
+                }
+                is States.ValidateEditMember.ExperienceEmpty -> {
+                    showObligatoryField(binding.edtExperience, R.string.obligatory_field)
+                }
+                is States.ValidateEditMember.SocielEmpty -> {
+                    showObligatoryField(binding.edtSocialMedia, R.string.obligatory_field)
+                }
+                is States.ValidateEditMember.EmailEmpty -> {
+                    showObligatoryField(binding.edtEmail, R.string.obligatory_field)
+                }
+                is States.ValidateEditMember.ContactEmpty -> {
+                    showObligatoryField(binding.edtContact, R.string.obligatory_field)
+                }
+
+                is States.ValidateEditMember.FieldsDone -> {
+                    editMember()
+                }
+
+            }
+        }
+
+        viewModel.editUser.observe(
+            viewLifecycleOwner
+        ) {
+            when (it) {
+                is States.EditMemberState.Success -> {
+                    onEditSuccess(it.members)
+                }
+                is States.EditMemberState.Loading -> {
+
+                }
+                is States.EditMemberState.Failure -> {
+
+                }
+            }
+        }
+
+    }
+
+    private fun onEditSuccess(newUserInfo: MembersItem) {
+
+        viewModel.setNewUserInfo(newUserInfo)
+        findNavController().popBackStack()
+        Toast.makeText(context, "Atualizado com suceso", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun showObligatoryField(edt: EditText, message: Int) {
+        edt.error = getString(message)
     }
 
     override fun onRequestPermissionsResult(

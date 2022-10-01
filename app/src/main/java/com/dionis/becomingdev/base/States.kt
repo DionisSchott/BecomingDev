@@ -17,11 +17,11 @@ abstract class States {
 
     }
 
-    sealed class EditUserState {
+    sealed class EditMemberState {
 
-        object Loading : EditUserState()
-        data class Success(val members: MembersItem) : EditUserState()
-        data class Failure(val error: String) : EditUserState()
+        object Loading : EditMemberState()
+        data class Success(val members: MembersItem) : EditMemberState()
+        data class Failure(val error: String) : EditMemberState()
 
     }
 
@@ -79,6 +79,19 @@ abstract class States {
         object EmailEmpty : ValidateAddNewMember()
         object ContactEmpty : ValidateAddNewMember()
         object FieldsDone : ValidateAddNewMember()
+
+    }
+
+    sealed class ValidateEditMember {
+        object NameEmpty : ValidateEditMember()
+        object LastnameEmpty : ValidateEditMember()
+        object AgeEmpty : ValidateEditMember()
+        object TechnologyEmpty : ValidateEditMember()
+        object ExperienceEmpty : ValidateEditMember()
+        object SocielEmpty : ValidateEditMember()
+        object EmailEmpty : ValidateEditMember()
+        object ContactEmpty : ValidateEditMember()
+        object FieldsDone : ValidateEditMember()
 
     }
 
