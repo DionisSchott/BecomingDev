@@ -4,11 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:elevation="10dp"
     android:layout_marginTop="14dp"
-    >
+    android:elevation="20dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/imgConstrains"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -22,11 +22,12 @@
 
 
         <TextView
-            android:id="@+id/TvMemberName"
+            android:id="@+id/tvMemberName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="14dp"
-            android:hint="UserName"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:hint="@string/lastname"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
             android:textSize="18sp"
@@ -34,18 +35,21 @@
             app:layout_constraintStart_toEndOf="@id/imgMembers"
             app:layout_constraintTop_toTopOf="@id/imgMembers" />
 
-        <TextView
-            android:id="@+id/TvLanguage"
-            android:layout_width="wrap_content"
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvLanguage"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="UserLanguage"
+            android:layout_margin="10dp"
+            android:paddingStart="120dp"
+            android:hint="dfsdjflsdjfls"
+            android:maxLines="3"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
             android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/TvMemberName"
-            app:layout_constraintTop_toBottomOf="@id/TvMemberName"
-            android:layout_marginTop="16dp"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgMembers"
+            app:layout_constraintTop_toBottomOf="@id/tvMemberName" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

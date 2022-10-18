@@ -2,6 +2,7 @@ package com.dionis.becomingdev.infrastructure.repository
 
 
 import com.dionis.becomingdev.data.api.registermember.RegisterMemberApi
+import com.dionis.becomingdev.domain.model.MembersItem
 import com.dionis.becomingdev.infrastructure.interfaces.repository.RegisterMemberRepository
 import com.dionis.becomingdev.model.registerMember.RegisterMemberBody
 import com.dionis.becomingdev.model.registerMember.RegisterMemberResponse
@@ -15,6 +16,10 @@ class RegisterMemberRepositoryImpl @Inject constructor(private val registerMembe
     override suspend fun newMember(body: RegisterMemberBody): Flow<RegisterMemberResponse> = flow {
         emit(registerMemberApi.registerMember(body))
 
+    }
+
+    override suspend fun deleteMember(id: Int): Flow<MembersItem> = flow {
+        emit(registerMemberApi.deleteMember(id))
     }
 
 }

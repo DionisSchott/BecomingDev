@@ -23,6 +23,14 @@
     <string name="image_error">Erro ao carregar imagem</string>
     <string name="image_path">image</string>
     <string name="dados_cadastrais">Dados Cadastrais</string>
+    <string name="edit_information">editar informações</string>
+    <string name="delete_member">deletar membro</string>
+    <string name="edit_info">Editar informações</string>
+    <string name="save">Salvar</string>
+    <string name="back">voltar</string>
+    <string name="yes">sim</string>
+    <string name="is_sure">tem certeza</string>
+    <string name="members">membros</string>
 
 
 </resources>

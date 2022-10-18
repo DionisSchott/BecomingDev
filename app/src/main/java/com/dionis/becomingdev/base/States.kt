@@ -33,6 +33,12 @@ abstract class States {
         data class Error(val error: String) : AddNewMemberState()
     }
 
+    sealed class DeleteMemberState {
+        object Loading : DeleteMemberState()
+        data class Success(val deleteMember: Int) : DeleteMemberState()
+        data class Error(val error: String) : DeleteMemberState()
+    }
+
     sealed class AddNewUserState {
         object Loading : AddNewUserState()
         data class Success(val newUser: NewUserResponse) : AddNewUserState()

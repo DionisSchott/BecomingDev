@@ -25,8 +25,26 @@ class RegisterMemberViewModel @Inject internal constructor(
     private val _addNewMember = MutableLiveData<States.AddNewMemberState>()
     val addNewMember: LiveData<States.AddNewMemberState> = _addNewMember
 
+    private val _deleteMember = MutableLiveData<States.DeleteMemberState>()
+    val deleteMember: LiveData<States.DeleteMemberState> = _deleteMember
+
     private val _validateFields: MutableLiveData<States.ValidateAddNewMember> = MutableLiveData()
     val validateFields: LiveData<States.ValidateAddNewMember> get() = _validateFields
+
+
+    fun deleteMember(id: Int) {
+        viewModelScope.launch {
+            registerMemberUseCase.deleteMember(
+                id)
+                .flowOn(Dispatchers.IO)
+                .onStart { _deleteMember.value = States.DeleteMemberState.Loading }
+                .catch {
+                    _deleteMember.value = States.DeleteMemberState.Error(it.message.toString())
+                }
+                .collect { _deleteMember.value = States.DeleteMemberState.Success(it.id) }
+        }
+        }
+
 
 
     fun registerMember(

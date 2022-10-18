@@ -41,8 +41,9 @@ class MembersAdapter : RecyclerView.Adapter<MembersAdapter.Holder>(){
             this.information = membersInfo
 
 //            Picasso.get().load(membersInfo.Photos[0].url).into(binding.imgMembers)
-            binding.TvMemberName.text = membersInfo.name
-            binding.TvLanguage.text = membersInfo.technology
+
+            binding.tvMemberName.text = membersInfo.name + " " + membersInfo.lastname
+            binding.tvLanguage.text = membersInfo.technology
 
             binding.root.setOnClickListener{
                 onItemClicked.invoke(membersInfo)

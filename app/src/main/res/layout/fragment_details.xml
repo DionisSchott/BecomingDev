@@ -12,6 +12,40 @@
         android:layout_width="match_parent"
         android:layout_height="0dp">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/falseToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_back"
+                app:layout_constraintBottom_toBottomOf="@id/falseToolbar"
+                app:layout_constraintStart_toStartOf="@id/falseToolbar"
+                app:layout_constraintTop_toTopOf="@id/falseToolbar" />
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dados do usuário"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/falseToolbar"
+                app:layout_constraintStart_toStartOf="@id/btnBack"
+                app:layout_constraintTop_toTopOf="@id/falseToolbar" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageView"
@@ -22,7 +56,7 @@
             android:src="@drawable/person_"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/falseToolbar" />
 
 
         <TextView
@@ -32,7 +66,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
             android:gravity="center"
-            android:text="nome"
+            android:text="@string/name"
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imageView" />
@@ -57,7 +91,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
             android:gravity="center"
-            android:text="idade"
+            android:text="@string/age"
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvUserName" />
@@ -82,7 +116,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
             android:gravity="center"
-            android:text="linguagens"
+            android:text="@string/technology"
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvUserAge" />
@@ -107,7 +141,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
             android:gravity="center"
-            android:text="experiênccias"
+            android:text="@string/experience"
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvLanguages" />
@@ -132,7 +166,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
             android:gravity="center"
-            android:text="e-mail"
+            android:text="@string/e_mail"
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvExperience" />
@@ -157,7 +191,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
             android:gravity="center"
-            android:text="rede social"
+            android:text="@string/social_network"
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvEmail" />
@@ -182,23 +216,23 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
             android:gravity="center"
-            android:text="telefone"
+            android:text="@string/contact"
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvSocial" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/tvContact"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="10dp"-->
-<!--            android:layout_marginEnd="20dp"-->
-<!--            android:text="99 99999-9999"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textSize="18sp"-->
-<!--            android:textStyle="bold"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/tvTitleContact" />-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/tvContact"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="10dp"-->
+        <!--            android:layout_marginEnd="20dp"-->
+        <!--            android:text="99 99999-9999"-->
+        <!--            android:textColor="@color/black"-->
+        <!--            android:textSize="18sp"-->
+        <!--            android:textStyle="bold"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/tvTitleContact" />-->
 
         <com.santalu.maskara.widget.MaskEditText
             android:id="@+id/tvContact"
@@ -207,27 +241,42 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="20dp"
             android:inputType="number"
+            android:text="22999999999"
             android:textColor="@color/black"
             android:textSize="18sp"
-            android:text="22999999999"
             android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/tvTitleContact"
             app:mask="(__) _____-____"
             app:maskCharacter="_"
-            app:maskStyle="normal"
-            app:layout_constraintTop_toBottomOf="@id/tvTitleContact" />
+            app:maskStyle="normal" />
 
 
         <Button
             android:id="@+id/btnEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:text="editar informações"
-            android:layout_margin="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/edit_information"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvContact"
+
+            />
+
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/delete_member"
+            android:textStyle="bold"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/blue"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnEdit"
 
             />
 

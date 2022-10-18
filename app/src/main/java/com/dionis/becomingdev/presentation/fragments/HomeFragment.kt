@@ -74,7 +74,7 @@ class HomeFragment : Fragment() {
                     imageBitmap: Bitmap?,
                     imageFile: File?,
                 ) {
-                    binding.imageView.setImageBitmap(imageBitmap)
+
 
                 }
 
@@ -115,9 +115,6 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragmentHome_to_registerMemberFragment)
         }
 
-//        binding.imageView.setOnClickListener {
-//            imageHelper.alertGenericTwoButtons(childFragmentManager)
-//        }
 
     }
 

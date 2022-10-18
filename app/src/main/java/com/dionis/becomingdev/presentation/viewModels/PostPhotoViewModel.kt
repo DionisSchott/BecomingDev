@@ -29,6 +29,15 @@ class PostPhotoViewModel @Inject internal constructor(
     private val _validateFields: MutableLiveData<States.ValidatePostPhoto> = MutableLiveData()
     val validateFields: LiveData<States.ValidatePostPhoto> get() = _validateFields
 
+    private val _imageFile: MutableLiveData<File> = MutableLiveData()
+    val imageFile: LiveData<File> = _imageFile
+
+
+    fun setImageFile(photo: File?) {
+        _imageFile.value = photo
+    }
+
+
 
     fun postPhoto(
         photo: File,
@@ -49,33 +58,33 @@ class PostPhotoViewModel @Inject internal constructor(
         }
     }
 
-//    fun validateFields(
-//        photo: File,
-//        developer_id: Int,
-//    ) {
-//        if (validateAllFields(
-//                photo,
-//                developer_id
-//            )
-//        )
-//            _validateFields.value = States.ValidatePostPhoto.FieldsDone
-//    }
+    fun validateFields(
+        photo: File?,
+        developer_id: Int,
+    ) {
+        if (validateAllFields(
+                photo,
+                developer_id
+            )
+        )
+            _validateFields.value = States.ValidatePostPhoto.FieldsDone
+    }
 
-//    private fun validateAllFields(
-//        photo: File,
-//        developer_id: Int,
-//
-//    ): Boolean {
-//        if (photo.isEmpty) {
-//            _validateFields.value = States.ValidatePostPhoto.UserPhotoEmpty
-//            return false
-//        }
-//        if (developer_id.toString().isEmpty()) {
-//            _validateFields.value = States.ValidatePostPhoto.UserIdEmpty
-//            return false
-//        }
-//
-//        return true
-//    }
+    private fun validateAllFields(
+        photo: File?,
+        developer_id: Int,
+
+    ): Boolean {
+        if (photo?.exists() == null) {
+            _validateFields.value = States.ValidatePostPhoto.UserPhotoEmpty
+            return false
+        }
+        if (developer_id.toString().isEmpty()) {
+            _validateFields.value = States.ValidatePostPhoto.UserIdEmpty
+            return false
+        }
+
+        return true
+    }
 
 }

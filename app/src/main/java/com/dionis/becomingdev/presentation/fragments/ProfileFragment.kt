@@ -17,6 +17,9 @@ import com.dionis.becomingdev.R
 import com.dionis.becomingdev.base.States
 import com.dionis.becomingdev.databinding.FragmentProfileBinding
 import com.dionis.becomingdev.domain.model.MembersItem
+import com.dionis.becomingdev.model.photos.PostPhotoBody
+import com.dionis.becomingdev.presentation.viewModels.HomeViewModel
+import com.dionis.becomingdev.presentation.viewModels.PostPhotoViewModel
 import com.dionis.becomingdev.presentation.viewModels.ProfileViewModel
 import com.dionis.becomingdev.util.helper.ImageHelper
 import com.squareup.picasso.Picasso
@@ -28,6 +31,7 @@ class ProfileFragment : Fragment() {
 
 
     private val viewModel: ProfileViewModel by activityViewModels()
+    private val postPhotoViewModel by viewModels<PostPhotoViewModel>()
 
     private lateinit var binding: FragmentProfileBinding
     lateinit var imageHelper: ImageHelper
@@ -55,30 +59,9 @@ class ProfileFragment : Fragment() {
         endIconClick()
         editImage()
         setDataUser()
-        setObservers()
 
 
     }
-
-
-//    private fun setUpObservers() {
-//        viewModel.getUserResult.observe(viewLifecycleOwner) {
-//            when (it) {
-//                is States.GetUserState.Success -> {
-//                    setDataUser(it.members)
-//
-//                }
-//                is States.GetUserState.Loading -> {
-//
-//
-//                }
-//                is States.GetUserState.Failure -> {
-//                   Toast.makeText(requireContext(), "Erro ao carregar membro", Toast.LENGTH_SHORT)
-//                        .show()
-//                }
-//            }
-//        }
-//    }
 
 
     private fun setDataUser() {
@@ -98,18 +81,43 @@ class ProfileFragment : Fragment() {
     }
 
     private fun setUpClicks() {
-        binding.btnSave.setOnClickListener{
+        binding.btnSave.setOnClickListener {
+            val memberId = memberId
             val name = binding.edtName.text.toString()
             val lastName = binding.edtLastname.text.toString()
             val age = binding.edtAge.text.toString().toInt()
-            val technology =  binding.edtTechnology.text.toString()
+            val technology = binding.edtTechnology.text.toString()
             val experience = binding.edtExperience.text.toString()
             val socials = binding.edtSocialMedia.text.toString()
             val email = binding.edtEmail.text.toString()
             val contact = binding.edtContact.unMasked
 
-            viewModel.validateFields(name, lastName, age, technology, experience, socials, email, contact)
+            viewModel.validateFields(name,
+                lastName,
+                age,
+                technology,
+                experience,
+                socials,
+                email,
+                contact)
+
+            postPhotoViewModel.validateFields(postPhotoViewModel.imageFile.value, memberId)
+
+            setObservers()
         }
+
+        backPage()
+    }
+
+    private fun backPage() {
+        binding.btnBack.setOnClickListener { findNavController().popBackStack() }
+    }
+
+    private fun postPhoto() {
+
+        val memberId = memberId
+        val photo = postPhotoViewModel.imageFile.value!!
+        postPhotoViewModel.postPhoto(photo, memberId)
     }
 
     private fun editMember() {
@@ -118,13 +126,23 @@ class ProfileFragment : Fragment() {
         val name = binding.edtName.text.toString()
         val lastName = binding.edtLastname.text.toString()
         val age = binding.edtAge.text.toString().toInt()
-        val technology =  binding.edtTechnology.text.toString()
+        val technology = binding.edtTechnology.text.toString()
         val experience = binding.edtExperience.text.toString()
         val socials = binding.edtSocialMedia.text.toString()
         val email = binding.edtEmail.text.toString()
         val contact = binding.edtContact.unMasked
 
-        viewModel.editUser(memberId, name, lastName, age, technology, experience, socials, email, contact)
+
+        viewModel.editUser(memberId,
+            name,
+            lastName,
+            age,
+            technology,
+            experience,
+            socials,
+            email,
+            contact)
+
 
     }
 
@@ -181,6 +199,40 @@ class ProfileFragment : Fragment() {
             }
         }
 
+        postPhotoViewModel.validateFields.observe(
+            viewLifecycleOwner
+        ) { state ->
+            when (state) {
+                is States.ValidatePostPhoto.UserPhotoEmpty -> {
+
+                }
+                is States.ValidatePostPhoto.UserIdEmpty -> {
+                    Toast.makeText(context, "ERRO", Toast.LENGTH_SHORT).show()
+                }
+                is States.ValidatePostPhoto.FieldsDone -> {
+                    postPhoto()
+                }
+            }
+        }
+
+        postPhotoViewModel.postPhoto.observe(
+            viewLifecycleOwner
+        ) {
+            when (it) {
+                is States.PostPhotoState.Success -> {
+                    binding.progressBar.visibility = View.GONE
+                }
+                is States.PostPhotoState.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
+
+                }
+                is States.PostPhotoState.Error -> {
+                    Toast.makeText(context, "ERRO AO ATUALIZAR FOTO", Toast.LENGTH_SHORT).show()
+                    binding.progressBar.visibility = View.GONE
+                }
+            }
+        }
+
     }
 
     private fun onEditSuccess(newUserInfo: MembersItem) {
@@ -214,6 +266,7 @@ class ProfileFragment : Fragment() {
                     imageFile: File?,
                 ) {
                     binding.imgProfile.setImageBitmap(imageBitmap)
+                    postPhotoViewModel.setImageFile(imageFile)
 
                 }
 
@@ -222,7 +275,7 @@ class ProfileFragment : Fragment() {
                 }
 
                 override fun onError() {
-                    //toast(R.string.image_error)
+//                    toast(R.string.image_error)
                 }
             })
     }
@@ -237,11 +290,13 @@ class ProfileFragment : Fragment() {
 
     private fun endIconClick() {
         binding.edtNameLayout.setEndIconOnClickListener { binding.edtName.text?.clear() }
+        binding.edtLastnameLayout.setEndIconOnClickListener { binding.edtLastname.text?.clear() }
+        binding.edtAgeLayout.setEndIconOnClickListener { binding.edtAge.text?.clear() }
         binding.edtEmailLayout.setEndIconOnClickListener { binding.edtEmail.text?.clear() }
         binding.edtTechnologyLayout.setEndIconOnClickListener { binding.edtTechnology.text?.clear() }
         binding.edtExperienceLayout.setEndIconOnClickListener { binding.edtExperience.text?.clear() }
         binding.edtSocialMediaLayout.setEndIconOnClickListener { binding.edtSocialMedia.text?.clear() }
-
+        binding.edtContactLayout.setEndIconOnClickListener { binding.edtContact.text?.clear() }
     }
 
     companion object {

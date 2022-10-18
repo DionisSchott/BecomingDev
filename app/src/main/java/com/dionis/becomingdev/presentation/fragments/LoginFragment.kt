@@ -36,8 +36,22 @@ class LoginFragment : Fragment() {
         setUpClicks()
         setObservers()
         openRegisterScreen()
+        autoLogin()
     }
 
+
+    private fun autoLogin() {
+        if (!binding.edtEmail.text.isNullOrEmpty() && !binding.edtPassword.text.isNullOrEmpty()){
+            val email = binding.edtEmail.toString()
+            val password = binding.edtPassword.toString()
+
+            viewModel.validateFields(
+                email,
+                password
+            )
+            setObservers()
+        }
+    }
 
     private fun setUpClicks() {
         binding.btnLogin.setOnClickListener {
