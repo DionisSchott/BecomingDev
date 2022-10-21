@@ -25,8 +25,6 @@ abstract class States {
 
     }
 
-
-
     sealed class AddNewMemberState {
         object Loading : AddNewMemberState()
         data class Success(val newMember: RegisterMemberResponse) : AddNewMemberState()
@@ -57,6 +55,11 @@ abstract class States {
         data class Error(val error: String) : PostPhotoState()
     }
 
+    sealed class EditProfileState {
+        object Loading : EditProfileState()
+        data class Success(val login: MembersItem) : EditProfileState()
+        data class Error(val error: String) : EditProfileState()
+    }
 
 
     sealed class ValidateAddNewUser {
@@ -73,7 +76,6 @@ abstract class States {
         object FieldsDone : ValidatePostPhoto()
 
     }
-
 
     sealed class ValidateAddNewMember {
         object NameEmpty : ValidateAddNewMember()
@@ -94,7 +96,7 @@ abstract class States {
         object AgeEmpty : ValidateEditMember()
         object TechnologyEmpty : ValidateEditMember()
         object ExperienceEmpty : ValidateEditMember()
-        object SocielEmpty : ValidateEditMember()
+        object SocialEmpty : ValidateEditMember()
         object EmailEmpty : ValidateEditMember()
         object ContactEmpty : ValidateEditMember()
         object FieldsDone : ValidateEditMember()
@@ -106,5 +108,6 @@ abstract class States {
         object PasswordEmpty : ValidateLogin()
         object FieldsDone : ValidateLogin()
     }
+
 
 }

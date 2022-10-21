@@ -55,6 +55,7 @@ class HomeFragment : Fragment() {
     }
 
 
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -75,6 +76,7 @@ class HomeFragment : Fragment() {
                     imageFile: File?,
                 ) {
 
+ //                   binding.imageView.setImageBitmap(imageBitmap)
 
                 }
 

@@ -26,8 +26,10 @@ class ProfileViewModel @Inject constructor(private val profileUseCase: IProfileU
     private var _newUserInfo = MutableLiveData<MembersItem>()
     val newUserInfo: LiveData<MembersItem> = _newUserInfo
 
+
     private val _validateFields: MutableLiveData<States.ValidateEditMember> = MutableLiveData()
     val validateFields: LiveData<States.ValidateEditMember> get() = _validateFields
+
 
     fun setNewUserInfo(any: MembersItem) {
         _newUserInfo.value = any
@@ -116,7 +118,7 @@ class ProfileViewModel @Inject constructor(private val profileUseCase: IProfileU
             return false
         }
         if (socials.isEmpty()) {
-            _validateFields.value = States.ValidateEditMember.SocielEmpty
+            _validateFields.value = States.ValidateEditMember.SocialEmpty
             return false
         }
         if (email.isEmpty()) {

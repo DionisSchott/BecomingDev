@@ -103,7 +103,8 @@
                 android:id="@+id/edtLastname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="sobrenome"
+                android:inputType="text"
+                android:text="@string/lastname"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -129,7 +130,7 @@
                 android:id="@+id/edtAge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="00"
+                android:inputType="text"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -143,7 +144,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:hint="@string/technology"
+            android:hint="Linguagens"
             android:padding="5dp"
             app:endIconContentDescription="@string/material_motion_easing_standard"
             app:endIconDrawable="@drawable/ic_erase"
@@ -156,7 +157,7 @@
                 android:id="@+id/edtTechnology"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="kotlin"
+                android:inputType="text"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -183,7 +184,6 @@
                 android:id="@+id/edtExperience"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Empresa"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -209,10 +209,12 @@
                 android:id="@+id/edtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="text"
                 android:text="email@email.com"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
+
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -241,9 +243,7 @@
                 android:text="linkedin"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:textStyle="bold"
-
-                />
+                android:textStyle="bold" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -287,16 +287,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtContactLayout" />
 
+
+
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:inputType="text"
+            android:maxLines="1"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:visibility="gone"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout></ScrollView>

@@ -17,11 +17,10 @@ import com.dionis.becomingdev.R
 import com.dionis.becomingdev.base.States
 import com.dionis.becomingdev.databinding.FragmentProfileBinding
 import com.dionis.becomingdev.domain.model.MembersItem
-import com.dionis.becomingdev.model.photos.PostPhotoBody
-import com.dionis.becomingdev.presentation.viewModels.HomeViewModel
 import com.dionis.becomingdev.presentation.viewModels.PostPhotoViewModel
 import com.dionis.becomingdev.presentation.viewModels.ProfileViewModel
 import com.dionis.becomingdev.util.helper.ImageHelper
+
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
@@ -33,6 +32,8 @@ class ProfileFragment : Fragment() {
     private val viewModel: ProfileViewModel by activityViewModels()
     private val postPhotoViewModel by viewModels<PostPhotoViewModel>()
 
+
+    private lateinit var photo: File
     private lateinit var binding: FragmentProfileBinding
     lateinit var imageHelper: ImageHelper
     lateinit var memberEdit: MembersItem
@@ -55,7 +56,7 @@ class ProfileFragment : Fragment() {
         imageHelper = ImageHelper(requireActivity())
         memberId = memberEdit.id
 
-        setUpClicks()
+        setUp()
         endIconClick()
         editImage()
         setDataUser()
@@ -107,7 +108,15 @@ class ProfileFragment : Fragment() {
         }
 
         backPage()
+        setUp()
+
     }
+
+    private fun setUp() {
+        setObservers()
+        setUpClicks()
+    }
+
 
     private fun backPage() {
         binding.btnBack.setOnClickListener { findNavController().popBackStack() }
@@ -166,7 +175,7 @@ class ProfileFragment : Fragment() {
                 is States.ValidateEditMember.ExperienceEmpty -> {
                     showObligatoryField(binding.edtExperience, R.string.obligatory_field)
                 }
-                is States.ValidateEditMember.SocielEmpty -> {
+                is States.ValidateEditMember.SocialEmpty -> {
                     showObligatoryField(binding.edtSocialMedia, R.string.obligatory_field)
                 }
                 is States.ValidateEditMember.EmailEmpty -> {
@@ -186,6 +195,7 @@ class ProfileFragment : Fragment() {
         viewModel.editUser.observe(
             viewLifecycleOwner
         ) {
+
             when (it) {
                 is States.EditMemberState.Success -> {
                     onEditSuccess(it.members)
@@ -236,15 +246,16 @@ class ProfileFragment : Fragment() {
     }
 
     private fun onEditSuccess(newUserInfo: MembersItem) {
-
         viewModel.setNewUserInfo(newUserInfo)
         findNavController().popBackStack()
         Toast.makeText(context, "Atualizado com suceso", Toast.LENGTH_SHORT).show()
     }
 
+
     private fun showObligatoryField(edt: EditText, message: Int) {
         edt.error = getString(message)
     }
+
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -278,6 +289,7 @@ class ProfileFragment : Fragment() {
 //                    toast(R.string.image_error)
                 }
             })
+
     }
 
 
@@ -299,9 +311,8 @@ class ProfileFragment : Fragment() {
         binding.edtContactLayout.setEndIconOnClickListener { binding.edtContact.text?.clear() }
     }
 
+
     companion object {
         const val MEMBER_EDIT = "member edit"
     }
-
-
 }

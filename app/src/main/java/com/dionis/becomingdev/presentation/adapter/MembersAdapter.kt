@@ -8,13 +8,15 @@ import com.dionis.becomingdev.databinding.ItemHomeMembersBinding
 import com.dionis.becomingdev.domain.model.MembersItem
 import com.squareup.picasso.Picasso
 
-class MembersAdapter : RecyclerView.Adapter<MembersAdapter.Holder>(){
+class MembersAdapter : RecyclerView.Adapter<MembersAdapter.Holder>() {
 
     lateinit var onItemClicked: (MembersItem) -> Unit
     private var membersItems: MutableList<MembersItem> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        return Holder(ItemHomeMembersBinding.inflate(LayoutInflater.from(parent.context), parent, false), onItemClicked)
+        return Holder(ItemHomeMembersBinding.inflate(LayoutInflater.from(parent.context),
+            parent,
+            false), onItemClicked)
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -33,21 +35,26 @@ class MembersAdapter : RecyclerView.Adapter<MembersAdapter.Holder>(){
 
     class Holder(
         private val binding: ItemHomeMembersBinding,
-        private val onItemClicked: (MembersItem) -> Unit
+        private val onItemClicked: (MembersItem) -> Unit,
     ) : RecyclerView.ViewHolder(binding.root) {
         lateinit var information: MembersItem
 
         fun bind(membersInfo: MembersItem) {
             this.information = membersInfo
 
-//            Picasso.get().load(membersInfo.Photos[0].url).into(binding.imgMembers)
+            if (membersInfo.Photos.isEmpty())
+            else {
+                Picasso.get().load(membersInfo.Photos[0].url).into(binding.imgMembers)
+            }
 
             binding.tvMemberName.text = membersInfo.name + " " + membersInfo.lastname
             binding.tvLanguage.text = membersInfo.technology
 
-            binding.root.setOnClickListener{
+            binding.root.setOnClickListener {
                 onItemClicked.invoke(membersInfo)
             }
+
+
         }
     }
 }
